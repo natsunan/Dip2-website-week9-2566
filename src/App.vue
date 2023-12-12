@@ -1,26 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <img src="./assets/logo.png" alt="Vue logo">
+    <!-- static props -->
+    <greeting-message first-name="Mark" last-name="Zuckerberg" />
+    <greeting-message first-name="Elon" last-name="Musk" />
+    <greeting-message first-name="Leo" last-name="Messi" />
+    <hr />
+    <!-- Dynamic props -->
+    <greeting-message :first-name="fName" :last-name="lName" />
+    <greeting-message :full-name="fullName" />
+
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import GreetingMessage from './components/GreetingMessage.vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    GreetingMessage,
+  },
+  data() {
+    return {
+      fName: 'Jhon',
+      lName:'Doe',
+    }
+  },
+  computed: {
+    fullName() {
+      return this.fName + " " + this.lName
+    }
+  },
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
